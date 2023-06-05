@@ -1,25 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import Viewer from "./component/Viewer";
+import Controller from "./component/Controller";
+import {useState} from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [count, setCount] = useState(0)
+    const handleSetCount = (value) => {
+        setCount(count + value)
+    }
+
+    const handleReset = () => {
+        setCount(0)
+    }
+
+    const handler = {
+        handleSetCount, handleReset
+    }
+    return (
+        <div className="App">
+            <h1>React Counter</h1>
+            <section>
+                <Viewer props={count}/>
+            </section>
+            <section>
+                <Controller handler={handler}/>
+            </section>
+        </div>
+    );
 }
 
 export default App;
